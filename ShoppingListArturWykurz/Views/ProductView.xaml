@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ShoppingListArturWykurz.Views.ProductView"
+    Padding="0"
+    Margin="0"
+    HorizontalOptions="FillAndExpand">
+
+    <Border Margin="5" Padding="10" Stroke="#d0d0d0" StrokeThickness="1" BackgroundColor="White">
+        <Grid ColumnDefinitions="Auto,*,Auto,Auto,Auto,Auto" ColumnSpacing="8" RowSpacing="0" HorizontalOptions="FillAndExpand">
+
+            <!-- Checkbox do zaznaczenia zakupionych produktów -->
+            <CheckBox 
+                x:Name="PurchasedCheckBox" 
+                Grid.Column="0" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                CheckedChanged="OnPurchasedChanged" />
+
+            <!-- Info o produkcie (Nazwa, jednostka, czy jest opcjonalny) -->
+            <StackLayout Grid.Column="1" VerticalOptions="Center" Spacing="3" HorizontalOptions="FillAndExpand">
+                
+                <Label 
+                    x:Name="NameLabel" 
+                    FontSize="16" 
+                    FontAttributes="Bold"
+                    LineBreakMode="TailTruncation"
+                    TextColor="Black" />
+
+                <StackLayout Orientation="Horizontal" Spacing="8">
+                    
+                    <Label 
+                        x:Name="UnitLabel" 
+                        FontSize="12" 
+                        TextColor="#888888" />
+
+                    <Label 
+                        x:Name="OptionalLabel" 
+                        FontSize="11" 
+                        TextColor="#FF9800"
+                        FontAttributes="Bold" />
+                    
+                </StackLayout>
+                
+            </StackLayout>
+
+            <!-- Przycisk do pomniejszania ilości produktów -->
+            <Button 
+                Grid.Column="2"
+                Text="−"
+                WidthRequest="40"
+                HeightRequest="40"
+                CornerRadius="20"
+                BackgroundColor="#f0f0f0"
+                TextColor="Black"
+                FontSize="20"
+                Clicked="OnDecreaseClicked"
+                Padding="0"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
+
+            <!-- Ilość rzeczy -->
+            <Label 
+                Grid.Column="3"
+                x:Name="QuantityLabel"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                FontSize="16"
+                FontAttributes="Bold"
+                WidthRequest="40"
+                HorizontalTextAlignment="Center"
+                TextColor="#333333" />
+
+            <!-- Przycisk do powiększenia ilości produktów -->
+            <Button 
+                Grid.Column="4"
+                Text="+"
+                WidthRequest="40"
+                HeightRequest="40"
+                CornerRadius="20"
+                BackgroundColor="#f0f0f0"
+                TextColor="Black"
+                FontSize="20"
+                Clicked="OnIncreaseClicked"
+                Padding="0"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
+
+            <!-- Przycisk do usunięcia -->
+            <Button 
+                Grid.Column="5"
+                x:Name="DeleteButton"
+                Text="🗑"
+                WidthRequest="40"
+                HeightRequest="40"
+                BackgroundColor="Transparent"
+                TextColor="#D32F2F"
+                FontSize="18"
+                Clicked="OnDeleteClicked"
+                Padding="0"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
+
+        </Grid>
+    </Border>
+    
+</ContentView>
