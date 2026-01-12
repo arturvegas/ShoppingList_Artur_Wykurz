@@ -4,9 +4,9 @@ using System.Runtime.CompilerServices;
 
 namespace ShoppingListArturWykurz.Models;
 
-public class Category : INotifyPropertyChanged
+public class Category
 {
-    private string _name = string.Empty;
+    private string _name;
     private bool _isExpanded = false;
     private ObservableCollection<Product> _products = new();
 
@@ -51,7 +51,7 @@ public class Category : INotifyPropertyChanged
 
     public Category()
     {
-        Name = string.Empty;
+        Name = "";
         Products = new ObservableCollection<Product>();
         IsExpanded = false;
     }

@@ -5,7 +5,7 @@ namespace ShoppingListArturWykurz.Views;
 
 public partial class MainPage : ContentPage
 {
-    private IDataService _dataService;
+    private JsonDataService _dataService;
     private List<Category> _categories = new();
 
     public MainPage()
@@ -60,59 +60,6 @@ public partial class MainPage : ContentPage
         _categories.Add(newCategory);
         DisplayCategories();
         await SaveCategoriesAsync();
-    }
-
-    private async void OnExportClicked(object sender, EventArgs e)
-    {
-        try
-        {
-            string? fileName = await DisplayPromptAsync("Eksport", "Nazwa pliku (bez rozszerzenia):", "Export");
-            if (string.IsNullOrWhiteSpace(fileName)) return;
-
-            string json = await _dataService.ExportDataAsync(_categories);
-            string filePath = Path.Combine(FileSystem.AppDataDirectory, $"{fileName.Trim()}.json");
-            await File.WriteAllTextAsync(filePath, json);
-
-            await DisplayAlert("Sukces", $"Plik został zapisany:\n{filePath}", "OK");
-        }
-        catch (Exception ex)
-        {
-            await DisplayAlert("Błąd", $"Błąd eksportu: {ex.Message}", "OK");
-        }
-    }
-
-    private async void OnImportClicked(object sender, EventArgs e)
-    {
-        try
-        {
-            string? filePath = await DisplayPromptAsync("Import", 
-                $"Pełna ścieżka z nazwą pliku do importu: \n⚠️UWAGA: po zaimportowaniu pliku, aktualna lista zostanie usunięta!⚠️\n" +
-                $"⚠️Wyeksportuj aktualną listę, aby jej nie stracić!⚠️", "Import");
-
-            if (!File.Exists(filePath))
-            {
-                await DisplayAlert("Błąd", "Plik nie istnieje!", "OK");
-                return;
-            }
-
-            string json = await File.ReadAllTextAsync(filePath);
-            _categories = await _dataService.ImportDataAsync(json);
-
-            if (_categories.Count > 0)
-            {
-                DisplayCategories();
-                await SaveCategoriesAsync();
-                await DisplayAlert("Sukces", "Lista została zaimportowana!", "OK");
-            }
-            else
-            {
-                await DisplayAlert("Błąd", "Plik nie zawiera poprawnych danych!", "OK");
-            }
-        }
-        catch (Exception ex)
-        {
-            await DisplayAlert("Błąd", $"Błąd importu: {ex.Message}", "OK");
-        }
     }
 
     private async Task SaveCategoriesAsync()

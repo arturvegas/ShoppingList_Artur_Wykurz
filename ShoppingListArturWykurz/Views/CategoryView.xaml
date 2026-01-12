@@ -10,13 +10,10 @@
     <Border Margin="10" Padding="15" Stroke="#7FB7BE" StrokeThickness="1" BackgroundColor="#4B8D95">
         <StackLayout Spacing="10" HorizontalOptions="FillAndExpand">
 
-            <!-- Header kategorii z przyciskiem do rozwinięcia -->
-            <Grid ColumnDefinitions="Auto,*,Auto,Auto" ColumnSpacing="8" HorizontalOptions="FillAndExpand">
+            <StackLayout Orientation="Horizontal" Spacing="8" HorizontalOptions="FillAndExpand">
   
-                <!-- Przycisk do rozwinięcia kategorii -->
                 <Button 
                     x:Name="ExpandButton"
-                    Grid.Column="0"
                     Text="▶"
                     WidthRequest="40"
                     HeightRequest="40"
@@ -27,18 +24,17 @@
                     FontSize="14" 
                     TextColor="Black" />
 
-                <!-- Nazwa kategorii -->
                 <Label 
                     x:Name="CategoryNameLabel"
-                    Grid.Column="1"
                     FontSize="18"
                     FontAttributes="Bold"
                     VerticalOptions="Center"
-                    TextColor="White" />
+                    TextColor="White"
+                    HorizontalOptions="Start" />
 
-                <!-- Przycisk do dodania produktu -->
+                <Label HorizontalOptions="FillAndExpand" />
+
                 <Button 
-                    Grid.Column="2"
                     Text="➕"
                     WidthRequest="50"
                     HeightRequest="50"
@@ -48,9 +44,7 @@
                     Clicked="OnAddProductClicked"
                     FontSize="16" />
 
-                <!-- Przycisk do usunięcia kategorii -->
                 <Button 
-                    Grid.Column="3"
                     x:Name="DeleteCategoryButton"
                     Text="🗑"
                     WidthRequest="50"
@@ -61,9 +55,8 @@
                     Clicked="OnDeleteCategoryClicked"
                     FontSize="16" />
        
-            </Grid>
+            </StackLayout>
 
-            <!-- Lista produktów -->
             <VerticalStackLayout 
                 x:Name="ProductsContainer"
                 IsVisible="False"
