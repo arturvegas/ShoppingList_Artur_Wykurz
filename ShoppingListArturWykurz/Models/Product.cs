@@ -3,13 +3,11 @@ using System.Runtime.CompilerServices;
 
 namespace ShoppingListArturWykurz.Models;
 
-public class Product : INotifyPropertyChanged
+public class Product
 {
     private string _name = string.Empty;
     private string _unit = "szt.";
     private int _quantity = 1;
-    private bool _isPurchased = false;
-    private bool _isOptional = false;
 
     public string Name
     {
@@ -46,32 +44,6 @@ public class Product : INotifyPropertyChanged
             if (_quantity != value)
             {
                 _quantity = value;
-                OnPropertyChanged();
-            }
-        }
-    }
-
-    public bool IsPurchased
-    {
-        get => _isPurchased;
-        set
-        {
-            if (_isPurchased != value)
-            {
-                _isPurchased = value;
-                OnPropertyChanged();
-            }
-        }
-    }
-
-    public bool IsOptional
-    {
-        get => _isOptional;
-        set
-        {
-            if (_isOptional != value)
-            {
-                _isOptional = value;
                 OnPropertyChanged();
             }
         }

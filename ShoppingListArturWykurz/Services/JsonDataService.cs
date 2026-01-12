@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace ShoppingListArturWykurz.Services;
 
-public class JsonDataService : IDataService
+public class JsonDataService
 {
     private const string FileName = "shopping_list.json";
 
@@ -47,25 +47,6 @@ public class JsonDataService : IDataService
         catch (Exception ex)
         {
             System.Diagnostics.Debug.WriteLine($"Error saving data: {ex.Message}");
-        }
-    }
-
-    public async Task<string> ExportDataAsync(List<Category> categories)
-    {
-        var options = new JsonSerializerOptions { WriteIndented = true };
-        return await Task.FromResult(JsonSerializer.Serialize(categories, options));
-    }
-
-    public async Task<List<Category>> ImportDataAsync(string json)
-    {
-        try
-        {
-            var categories = JsonSerializer.Deserialize<List<Category>>(json) ?? new();
-            return await Task.FromResult(categories);
-        }
-        catch
-        {
-            return new();
         }
     }
 

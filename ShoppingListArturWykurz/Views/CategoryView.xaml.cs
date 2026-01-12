@@ -51,7 +51,7 @@ public partial class CategoryView : ContentView
 
         ProductsContainer.Children.Clear();
 
-        var sortedProducts = _category.Products.OrderBy(p => p.IsPurchased).ToList();
+        var sortedProducts = _category.Products.ToList();
 
         foreach (var product in sortedProducts)
         {
@@ -94,15 +94,11 @@ public partial class CategoryView : ContentView
             quantity = parsedQuantity;
         }
 
-        bool isOptional = await Application.Current!.MainPage!.DisplayAlert("Opcjonalny produkt?", "Czy ten produkt jest opcjonalny?", "Tak", "Nie");
-
         var newProduct = new Product
         {
             Name = productName.Trim(),
             Unit = unit.Trim(),
-            Quantity = quantity,
-            IsPurchased = false,
-            IsOptional = isOptional
+            Quantity = quantity
         };
 
         _category.Products.Add(newProduct);
