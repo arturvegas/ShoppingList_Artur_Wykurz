@@ -7,8 +7,22 @@
     Margin="0"
     HorizontalOptions="FillAndExpand">
 
-    <Border Margin="5" Padding="10" Stroke="#d0d0d0" StrokeThickness="1" BackgroundColor="White">
+    <Border x:Name="ProductBorder" Margin="5" Padding="10" Stroke="#d0d0d0" StrokeThickness="1" BackgroundColor="White">
         <HorizontalStackLayout Spacing="8" HorizontalOptions="FillAndExpand">
+
+            <Button 
+                x:Name="CheckButton"
+                Text="☐"
+                WidthRequest="40"
+                HeightRequest="40"
+                CornerRadius="5"
+                BackgroundColor="#f0f0f0"
+                TextColor="Black"
+                FontSize="20"
+                Clicked="OnCheckClicked"
+                Padding="0"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
 
             <StackLayout VerticalOptions="Center" Spacing="3" HorizontalOptions="FillAndExpand">
 
@@ -38,15 +52,16 @@
                 HorizontalOptions="Center"
                 VerticalOptions="Center" />
 
-            <Label 
-                x:Name="QuantityLabel"
+            <Entry 
+                x:Name="QuantityEntry"
+                WidthRequest="50"
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
-                FontSize="16"
-                FontAttributes="Bold"
-                WidthRequest="40"
                 HorizontalTextAlignment="Center"
-                TextColor="#333333" />
+                FontSize="16"
+                TextColor="#333333"
+                Keyboard="Numeric"
+                TextChanged="OnQuantityTextChanged" />
 
             <Button 
                 Text="+"

@@ -8,6 +8,7 @@ public class Product
     private string _name = string.Empty;
     private string _unit = "szt.";
     private int _quantity = 1;
+    private bool _isPurchased = false;
 
     public string Name
     {
@@ -44,6 +45,19 @@ public class Product
             if (_quantity != value)
             {
                 _quantity = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    public bool IsPurchased
+    {
+        get => _isPurchased;
+        set
+        {
+            if (_isPurchased != value)
+            {
+                _isPurchased = value;
                 OnPropertyChanged();
             }
         }
