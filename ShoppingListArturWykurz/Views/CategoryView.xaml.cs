@@ -51,7 +51,9 @@ public partial class CategoryView : ContentView
 
         ProductsContainer.Children.Clear();
 
-        var sortedProducts = _category.Products.ToList();
+        var sortedProducts = _category.Products
+            .OrderBy(p => p.IsPurchased)
+            .ToList();
 
         foreach (var product in sortedProducts)
         {
